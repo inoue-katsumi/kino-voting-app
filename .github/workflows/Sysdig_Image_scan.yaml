@@ -3,7 +3,8 @@ env:
   SECURE_API_TOKEN: "DUMMY6ee-813d-44d8-9433-b5bfb13dd7cc"
   SYSDIG_SECURE_URL: "https://DUMMYDUMMYsdig.com/"
 
-on: [push, pull_request]
+on:
+  push:
     branches:
       - 'scanner'
     # only build when important files change
