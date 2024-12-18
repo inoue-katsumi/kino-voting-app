@@ -1,8 +1,8 @@
 #!/bin/bash
 # yq is available from https://github.com/mikefarah/yq
 #
-export SECURE_API_TOKEN=bfaba6ee-813d-44d8-9433-b5bfb13dd7cc
-export API_URL=https://app.au1.sysdig.com/
+export SECURE_API_TOKEN=DUMMY6ee-813d-44d8-9433-b5bfb13dd7cc
+export API_URL=https://DUMMYu1.sysdig.com/
 
 yq --no-doc '.spec.template.spec.containers[].image' k8s-specifications/*-deployment.yaml |
 while read image
