@@ -1,7 +1,7 @@
 name: Container Image CI
 env:
-  SECURE_API_TOKEN: "DUMMY6ee-813d-44d8-9433-b5bfb13dd7cc"
   SYSDIG_SECURE_URL: "https://app.au1.sysdig.com/"
+#  SECURE_API_TOKEN: "DUMMY6ee-813d-44d8-9433-b5bfb13dd7cc"
 
 on:
   push:
@@ -28,6 +28,7 @@ jobs:
         with:
             image-tag: result:latest
             sysdig-secure-token: ${{ secrets.SECURE_API_TOKEN }}
+            sysdig-secure-url: ${{ env.SYSDIG_SECURE_URL }}
       - name: Upload SARIF file
         if: success() || failure()
         uses: github/codeql-action/upload-sarif@v3
