@@ -1,0 +1,34 @@
+name: Container Image CI
+env:
+  SECURE_API_TOKEN: "DUMMY6ee-813d-44d8-9433-b5bfb13dd7cc"
+  SYSDIG_SECURE_URL: "https://DUMMYDUMMYsdig.com/"
+
+on: [push, pull_request]
+    branches:
+      - 'scanner'
+    # only build when important files change
+    paths:
+      - 'result/**'
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag myapp/result:latest
+
+      - name: Scan image
+        id: scan
+        uses: sysdiglabs/scan-action@v5
+        with:
+            image-tag: myapp/result:latest
+            sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
+
+        - name: Upload SARIF file
+          if: success() || failure()
+          uses: github/codeql-action/upload-sarif@v3
+          with:
+            sarif_file: ${{ github.workspace }}/sarif.json
