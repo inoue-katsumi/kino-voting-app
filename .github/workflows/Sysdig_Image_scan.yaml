@@ -19,13 +19,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag myapp/result:latest
+        run: docker build . --file Dockerfile --tag result:latest
 
       - name: Scan image
         id: scan
         uses: sysdiglabs/scan-action@v5
         with:
-            image-tag: myapp/result:latest
+            image-tag: result:latest
             sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
 
         - name: Upload SARIF file
