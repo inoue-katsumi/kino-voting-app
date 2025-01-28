@@ -1,6 +1,8 @@
 # Example Voting App
 
 A simple distributed application running across multiple Docker containers.
+Modified to run on AKS.
+Also added Sysdig Github action container image scan.
 
 ## Getting started
 
